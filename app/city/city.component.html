@@ -1,0 +1,63 @@
+
+
+
+<div class="container">
+
+<form #f="ngForm">
+    <div class="col m4 col-">
+      
+        <i class="material-icons prefix">place</i>
+         <input  type="text" name="pin" required pattern="^[0-9]*$"  #pin="ngModel"  placeholder="Enter your pin" ngModel>
+         <span class="validate" *ngIf="pin.errors && (pin.touched || pin.dirty)">
+            <span class="msgs" *ngIf="pin.errors.required && pin.touched">
+              Field Required
+            </span>
+            <span class="msgs" *ngIf="pin.errors.pattern && (pin.errors.required|| pin.touched)">
+              Only numbers
+            </span>
+        </span>  
+           
+        <input  type="text" name="country" required pattern="^[a-zA-Z_ ]*$" #country="ngModel" placeholder="Enter your country code" ngModel>
+           <span class="validate" *ngIf="country.errors && (country.touched || country.dirty)">
+                              <span class="msgs" *ngIf="country.errors.required && country.touched">
+                                  Field Required</span>
+                               <span class="msgs" *ngIf="country.errors.pattern && (country.errors.required
+                                || country.touched)">
+                                  Only Alphabets</span>
+                           </span>  
+        <button (click)="submit(pin.value, country.value)" class="btn btn-success">Submit</button>
+  </div>
+  </form>
+<table *ngIf="stat" class="centered responsive-table">
+ <thead>
+  <tr>
+      <th>City Name</th> 
+      <th>Tempertaure</th>
+      <th>Pressure</th>
+      <th>Humidity</th>
+      <th>Maximum Temperature</th>
+      <th>Minimum Temperature</th>
+      <th>Longitude</th>
+      <th>Lattitude</th>
+      <th>Weather Description</th>
+      <th>Wind Speed</th>
+  </tr>
+ </thead>
+
+ <tbody>
+   <tr>
+     <td>{{a?.name}}</td>
+           <td>{{a?.main.temp}}</td> 
+          <td>{{a?.main.pressure}}</td>
+          <td>{{a?.main.humidity}}</td>
+          <td>{{a?.main.temp_max}}</td>
+          <td>{{a?.main.temp_min}}</td>
+          <td>{{a?.coord.lat}}</td>
+          <td>{{a?.coord.lon}}</td>
+          <td>{{a?.weather[0].description}}</td>
+          <td>{{a?.wind.speed}}</td>
+          
+   </tr>
+ </tbody>
+</table>
+</div>
